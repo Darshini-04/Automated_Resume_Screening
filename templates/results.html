@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Screening Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Screening Results</h1>
+        <p class="subtitle">Candidates ranked by resume-job-description similarity.</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Candidate</th>
+                    <th>Resume</th>
+                    <th>Match Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for candidate in results %}
+                <tr>
+                    <td>{{ candidate.rank }}</td>
+                    <td>{{ candidate.name }}</td>
+                    <td>{{ candidate.filename }}</td>
+                    <td>{{ candidate.score }}%</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <a class="back" href="{{ url_for('index') }}">← Screen another set</a>
+    </div>
+</body>
+</html>

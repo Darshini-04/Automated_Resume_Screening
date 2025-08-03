@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Screening System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Automated Resume Screening & Ranking</h1>
+        <p class="subtitle">Upload resumes and compare them with a job description.</p>
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="alert">{{ messages[0] }}</div>
+            {% endif %}
+        {% endwith %}
+
+        <form method="POST" enctype="multipart/form-data">
+            <label for="job_description">Job Description</label>
+            <textarea
+                id="job_description"
+                name="job_description"
+                rows="10"
+                placeholder="Enter the job description here..."
+                required
+            ></textarea>
+
+            <label for="resumes">Candidate Resumes (PDF)</label>
+            <input
+                id="resumes"
+                type="file"
+                name="resumes"
+                accept=".pdf"
+                multiple
+                required
+            >
+
+            <button type="submit">Screen Resumes</button>
+        </form>
+    </div>
+</body>
+</html>
